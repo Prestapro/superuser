@@ -29,8 +29,9 @@ class jbx_superuser extends Module
     public function __construct()
     {
         $this->name = 'jbx_superuser';
-        $this->tab = 'Julien Breux Developpement';
+        $this->tab = 'administration';
         $this->version = 1.6;
+        $this->author = 'Julien Breux Developpement';
         $this->page = basename(__FILE__, '.php');
         $this->is17 = version_compare(_PS_VERSION_, '1.7.0.0', '>=');
 
