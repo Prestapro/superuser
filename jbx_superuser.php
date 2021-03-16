@@ -32,6 +32,7 @@ class jbx_superuser extends Module
         $this->tab = 'Julien Breux Developpement';
         $this->version = 1.6;
         $this->page = basename(__FILE__, '.php');
+        $this->is17 = version_compare(_PS_VERSION_, '1.7.0.0', '>=');
 
         parent::__construct();
 
@@ -143,7 +144,13 @@ class jbx_superuser extends Module
             }
 
             if (Tools::getIsset('used_last_cart')) {
-                $cookie->id_cart = $customer->getLastCart();
+                $lastCartMethod = 'getLastCart';
+
+                if ($this->is17) {
+                    $lastCartMethod = 'getLastEmptyCart';
+                }
+
+                $cookie->id_cart = $customer->{$lastCartMethod}();
             }
         }
 
