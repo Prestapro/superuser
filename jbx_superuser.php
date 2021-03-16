@@ -69,7 +69,7 @@ class jbx_superuser extends Module
     {
         $names = @copy(_PS_MODULE_DIR_.$this->name.'/logo.gif', _PS_IMG_DIR_.'t/'.$tabClass.'.gif');
         $tab = new Tab();
-        $names = array(1=>'SuperUser', 'SuperUtilisateur');
+        $names = array(1 => 'SuperUser', 'SuperUtilisateur');
 
         foreach (Language::getLanguages() as $language) {
           $tab->name[$language['id_lang']] = isset($names[$language['id_lang']]) ? $names[$language['id_lang']] : $names[1];
@@ -78,6 +78,7 @@ class jbx_superuser extends Module
         $tab->class_name = $tabClass;
         $tab->module = $this->name;
         $tab->id_parent = $idTabParent;
+        $tab->enabled = 0;
 
         if (!$tab->save()) {
             return false;
