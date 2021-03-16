@@ -154,6 +154,11 @@ class jbx_superuser extends Module
 
                 $cookie->id_cart = $customer->{$lastCartMethod}();
             }
+
+            if ($this->is17) {
+                $cookie->is_guest = $customer->isGuest();
+                $cookie->registerSession(new CustomerSession());
+            }
         }
 
         return $cookie;
